@@ -88,3 +88,33 @@ ideasVisionV20p8NormCmpAtac1.bw	1	CMP
 ```
 time bash run_normalize_to_vision.sh
 ```
+
+## Output files
+##### The output files will be saved in the 'output_folder'
+##### (1) The bed file of all 200bp-bins: 's3norm_output/'$bedfile_200bp'.output.bed'
+##### The peak is sorted by peak name (4th column of the file)
+##### For running IDEAS, the signal of other marks of this 200-bins bed file should also be generated
+
+##### (2) The s3norm normalized signal of each cell type of mark named as $ct'.s3norm.txt'
+##### The each file only has one column that has the s3norm normalized signal of each 200bp-bin.
+##### The row order is the same as the 's3norm_output/'$bedfile_200bp'.output.bed' file
+```
+>ls -ltrh s3norm_output/*.s3norm.txt
+-rw-r-----  1 universe  staff    97K Dec 20 17:40 s3norm_output/CMP.s3norm.txt
+-rw-r-----  1 universe  staff    98K Dec 20 17:40 s3norm_output/CD4.s3norm.txt
+>
+>
+>
+>head s3norm_output/CMP.s3norm.txt
+0.04674804690559381
+0.04674804690559381
+0.04674804690559381
+0.04674804690559381
+```
+
+
+
+
+
+
+
