@@ -1,0 +1,4 @@
+ideasVisionV20p8NormCd4Atac.bw	1	CD4
+ideasVisionV20p8NormCd8Atac.bw	1	CD8
+ideasVisionV20p8NormCmpAtac.bw	1	CMP
+ideasVisionV20p8NormCmpAtac1.bw	1	CMP

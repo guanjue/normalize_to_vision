@@ -1,0 +1,3 @@
+/storage/home/g/gzx103/group/projects/vision/normalize_to_vision/signals/CD4.fisher_p.frip_snr.txt
+/storage/home/g/gzx103/group/projects/vision/normalize_to_vision/signals/CD8.fisher_p.frip_snr.txt
+/storage/home/g/gzx103/group/projects/vision/normalize_to_vision/signals/CMP.fisher_p.frip_snr.txt

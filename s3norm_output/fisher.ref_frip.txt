@@ -1,0 +1,3 @@
+/storage/home/g/gzx103/group/projects/vision/normalize_to_vision/signals/CMP.fisher_p.txt
+0.114117411894996
+8.03712629489044
