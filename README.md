@@ -23,7 +23,7 @@ LSD
 ```
 
 
-## input files
+## Input files
 ###### (1) the bw_file_list: (3 columns separated by tab)
 ###### 1st column: bw file name
 ###### 2nd column: always 1
@@ -54,6 +54,7 @@ chr1	8795200	8795400	chr1_8795200_8795400
 
 ###### (3) All of the bw file needs to be save in the $bw_folder folder
 
+### !!! (4) !!!
 ###### (4) overall ref bw file: The signal track used to scale different marks
 ###### Always use the ideasVisionV20p8NormImkK27ac.bw as the reference between marks
 ```
@@ -63,7 +64,7 @@ mv ideasVisionV20p8NormImkK27ac.bw user_given_bw_folder/
 
 
 ## RUN pipeline
-##### (1) change the folder names (script_dir, bw_folder, output_folder, bedfile_200bp_filename_remove_blacklist, bw_file_list) in 'runall.sh'
+##### (1) Copy run_normalize_to_vision.sh to the working directory. Change the folder names (script_dir, bw_folder, output_folder, bedfile_200bp_filename_remove_blacklist, bw_file_list) in 'run_normalize_to_vision.sh'
 ##### The folder path should always be the absolute path
 ```
 ##################################
