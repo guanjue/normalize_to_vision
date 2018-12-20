@@ -113,6 +113,50 @@ time bash run_normalize_to_vision.sh
 ```
 
 
+## To run testing data
+##### (1) Download the bigwig files from http://usevision.org/data/IDEASmouseHem/PKnorm/
+```
+### get testing data
+wget http://usevision.org/data/IDEASmouseHem/PKnorm/ideasVisionV20p8NormCmpAtac.bw
+wget http://usevision.org/data/IDEASmouseHem/PKnorm/ideasVisionV20p8NormCd4Atac.bw
+wget http://usevision.org/data/IDEASmouseHem/PKnorm/ideasVisionV20p8NormCd8Atac.bw
+cp ideasVisionV20p8NormCmpAtac.bw ideasVisionV20p8NormCmpAtac1.bw ### as a replicate of CMPatac
+### mv the bw files to the signals/ folder
+mv *bw signals/ 
+
+```
+
+##### (2) Change the folder names (script_dir, bw_folder, output_folder, bedfile_200bp_filename_remove_blacklist, bw_file_list) in 'run_normalize_to_vision.sh'
+##### The folder path should always be the absolute path
+```
+##################################
+script_dir='/storage/home/g/gzx103/group/projects/vision/normalize_to_vision/src/'
+bw_folder='/storage/home/g/gzx103/group/projects/vision/normalize_to_vision/signals/'
+output_folder='/storage/home/g/gzx103/group/projects/vision/normalize_to_vision/s3norm_output/'
+bedfile_200bp='mm10.200bin.rand.sort.bed'
+bw_file_list='bw_file_list.txt'
+```
+
+##### (3) use 'run_normalize_to_vision.sh' script to run pipeline
+```
+cd normalize_to_vision/
+time bash run_normalize_to_vision.sh
+```
+
+##### (4) Output should be saved in the s3norm_output/ folder in the script folder
+```
+>ls -ltrh s3norm_output/
+total 736K
+-rw-rw---- 1 gzx103 gzx103 232K Dec 20 16:55 mm10.200bin.rand.sort.bed.output.bed
+-rw-rw---- 1 gzx103 gzx103   12 Dec 20 16:56 ct_list.txt
+-rw-rw---- 1 gzx103 gzx103  297 Dec 20 16:56 fisherp.file_list.txt
+-rw-rw---- 1 gzx103 gzx103  125 Dec 20 16:56 fisher.ref_frip.txt
+-rw-rw---- 1 gzx103 gzx103  546 Dec 20 16:56 fisher.ref_frip.txt.info.txt
+-rw-rw---- 1 gzx103 gzx103  98K Dec 20 16:56 CD4.s3norm.txt
+-rw-rw---- 1 gzx103 gzx103  93K Dec 20 16:56 CD8.s3norm.txt
+-rw-rw---- 1 gzx103 gzx103  98K Dec 20 16:57 CMP.s3norm.txt
+```
+
 
 
 
