@@ -30,9 +30,15 @@ do
 	sig1=$(echo "$LINE" | awk -F '\t' -v OFS='\t' '{print $1}')
 	sig2=$(echo "$LINE" | awk -F '\t' -v OFS='\t' '{print $2}')
 	ct=$(echo "$LINE" | awk -F '\t' -v OFS='\t' '{print $3}')
-	if ~/group/software/ucsc/bigWigAverageOverBed $bw_folder$sig1 $bedfile_200bp $bw_folder$sig1'.tab'; then echo 'bigWigAverageOverBed'; else echo 'ERROR: bigWigAverageOverBed' && exit 1; fi
+	if $script_dir'bigWigAverageOverBed' $bw_folder$sig1 $bedfile_200bp $bw_folder$sig1'.tab'; then echo 'bigWigAverageOverBed'; else echo 'ERROR: bigWigAverageOverBed' && exit 1; fi
 	if sort -k1,1 $bw_folder$sig1'.tab' | cut -f5 > $bw_folder$sig1'.sig.tab'; then echo 'bigWigAverageOverBed'; else echo 'ERROR: bigWigAverageOverBed' && exit 1; fi
-	if Rscript $script_dir'negative_binomial_p_2r_bgadj.R' $bw_folder$sig1'.sig.tab' 1 $bw_folder$ct'.'$sig1'.nbp.tab'; then echo 'covert reads count to NB p-value DONE'; else echo 'ERROR: covert reads count to NB p-value' && exit 1; fi
+	if [[ "$sig2" -eq "1" ]]; then
+		if Rscript $script_dir'negative_binomial_p_2r_bgadj.R' $bw_folder$sig1'.sig.tab' $sig2 $bw_folder$ct'.'$sig1'.nbp.tab'; then echo 'covert reads count to NB p-value DONE'; else echo 'ERROR: covert reads count to NB p-value' && exit 1; fi	
+	else
+		if $script_dir'bigWigAverageOverBed' $bw_folder$sig2 $bedfile_200bp $bw_folder$sig2'.tab'; then echo 'bigWigAverageOverBed'; else echo 'ERROR: bigWigAverageOverBed' && exit 1; fi
+		if sort -k1,1 $bw_folder$sig2'.tab' | cut -f5 > $bw_folder$sig2'.sig.tab'; then echo 'bigWigAverageOverBed'; else echo 'ERROR: bigWigAverageOverBed' && exit 1; fi	
+		if Rscript $script_dir'negative_binomial_p_2r_bgadj.R' $bw_folder$sig1'.sig.tab' $bw_folder$sig2'.sig.tab' $bw_folder$ct'.'$sig1'.nbp.tab'; then echo 'covert reads count to NB p-value DONE'; else echo 'ERROR: covert reads count to NB p-value' && exit 1; fi
+	fi
 done < $bw_file_list
 
 ### fisher's method merge p-values
