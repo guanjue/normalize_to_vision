@@ -55,7 +55,7 @@ if time Rscript $script_dir'get_mk_ref.R' fisherp.file_list.txt frip fisher.ref_
 
 ### normalize to all mk ref
 ### get 200bp win signal of allref
-if ~/group/software/ucsc/bigWigAverageOverBed $bw_folder$bw_file_allref $bedfile_200bp $bw_folder$bw_file_allref'.tab'; then echo 'bigWigAverageOverBed allref'; else echo 'ERROR: bigWigAverageOverBed allref' && exit 1; fi
+if $script_dir'bigWigAverageOverBed' $bw_folder$bw_file_allref $bedfile_200bp $bw_folder$bw_file_allref'.tab'; then echo 'bigWigAverageOverBed allref'; else echo 'ERROR: bigWigAverageOverBed allref' && exit 1; fi
 if sort -k1,1 $bw_folder$bw_file_allref'.tab' | cut -f5 > $bw_folder$bw_file_allref'.sig.tab'; then echo 'bigWigAverageOverBed allref'; else echo 'ERROR: bigWigAverageOverBed allref' && exit 1; fi
 
 ### normalize to all mk ref
